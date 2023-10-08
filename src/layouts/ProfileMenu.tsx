@@ -29,20 +29,20 @@ const ProfileMenu: FC = () => {
         <MenuItem className="flex items-center gap-2">
           <UserCircleIcon className="h-5 w-5" />
           <Typography variant="small" className="font-normal">
-            Trang cá nhân
+            Profile
           </Typography>
         </MenuItem>
         <MenuItem className="flex items-center gap-2">
           <Cog6ToothIcon className="h-5 w-5" />
           <Typography variant="small" className="font-normal">
-            Chỉnh sửa thông tin
+            Settings
           </Typography>
         </MenuItem>
         <hr className="my-2 border-blue-gray-50" />
         <MenuItem className="flex items-center gap-2 ">
           <PowerIcon className="h-5 w-5 text-red-500" />
           <Typography color="red" variant="small" className="font-normal">
-            Đăng xuất
+            Sign out
           </Typography>
         </MenuItem>
       </MenuList>

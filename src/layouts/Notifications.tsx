@@ -1,6 +1,7 @@
 import { BellIcon, ClockIcon } from '@heroicons/react/24/outline'
 import {
   Avatar,
+  Badge,
   Button,
   IconButton,
   Menu,
@@ -14,11 +15,13 @@ import type { FC } from 'react'
 const Notifications: FC = () => {
   return (
     <Menu>
-      <MenuHandler>
-        <IconButton variant="text">
-          <BellIcon className="h-6 w-6" />
-        </IconButton>
-      </MenuHandler>
+      <Badge content="5" color="cyan">
+        <MenuHandler>
+          <IconButton variant="text">
+            <BellIcon className="h-6 w-6" />
+          </IconButton>
+        </MenuHandler>
+      </Badge>
       <MenuList className="flex flex-col gap-2">
         <MenuItem className="flex items-center gap-4 py-2 pl-2 pr-8">
           <Avatar
@@ -77,7 +80,7 @@ const Notifications: FC = () => {
           </div>
         </MenuItem>
         <Button color="cyan" variant="text">
-          Xem tất cả
+          View all
         </Button>
       </MenuList>
     </Menu>

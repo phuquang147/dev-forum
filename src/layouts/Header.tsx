@@ -2,6 +2,7 @@ import {
   Button,
   Collapse,
   IconButton,
+  Input,
   Navbar,
   Typography,
 } from '@material-tailwind/react'
@@ -11,6 +12,7 @@ import ProfileMenu from './ProfileMenu'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
+import { MagnifyingGlassIcon, PlusIcon } from '@heroicons/react/24/outline'
 
 const Header: FC = () => {
   const router = useRouter()
@@ -22,51 +24,6 @@ const Header: FC = () => {
     })
   }, [])
 
-  const navList = (
-    <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal"
-      >
-        <a href="#" className="flex items-center">
-          Pages
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal"
-      >
-        <a href="#" className="flex items-center">
-          Account
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal"
-      >
-        <a href="#" className="flex items-center">
-          Blocks
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal"
-      >
-        <a href="#" className="flex items-center">
-          Docs
-        </a>
-      </Typography>
-    </ul>
-  )
-
   return (
     <Navbar className="sticky top-0 z-50 h-max max-w-full rounded-none shadow">
       <div className="flex items-center justify-between text-blue-gray-900">
@@ -77,7 +34,34 @@ const Header: FC = () => {
           </Typography>
         </Link>
         <div className="flex items-center gap-4">
-          <div className="mr-4 hidden lg:block">{navList}</div>
+          <div className="relative flex w-full gap-2 md:w-max">
+            <Input
+              crossOrigin=""
+              type="search"
+              placeholder="Search posts..."
+              className="\ w-64 !border-2 !border-gray-300 bg-white text-gray-900 ring-4 ring-transparent placeholder:text-gray-500 focus:!border-cyan-500 focus:!border-t-cyan-500"
+              labelProps={{
+                className: 'hidden',
+              }}
+              containerProps={{ className: 'min-w-[100px]' }}
+            />
+            <IconButton
+              size="sm"
+              color="cyan"
+              className="!absolute right-1 top-1 rounded"
+            >
+              <MagnifyingGlassIcon className="h-5 w-5" />
+            </IconButton>
+          </div>
+          <Button
+            className="flex items-center gap-2"
+            size="md"
+            color="cyan"
+            variant="gradient"
+          >
+            <PlusIcon className="h-4 w-4" />
+            Create post
+          </Button>
           <Notifications />
           <ProfileMenu />
           <Button
@@ -89,7 +73,7 @@ const Header: FC = () => {
               router.push('/auth')
             }}
           >
-            Đăng nhập
+            Sign In
           </Button>
           <IconButton
             variant="text"
@@ -133,7 +117,6 @@ const Header: FC = () => {
         </div>
       </div>
       <Collapse open={openNav} className="flex flex-col p-0">
-        {navList}
         <Button
           variant="gradient"
           color="cyan"
