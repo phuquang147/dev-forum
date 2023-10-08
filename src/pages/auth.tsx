@@ -11,6 +11,7 @@ import {
 } from '@material-tailwind/react'
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 import React, { type FC } from 'react'
 import LoginForm from '~/components/Auth/LoginForm'
 import RegisterForm from '~/components/Auth/RegisterForm'
@@ -21,7 +22,7 @@ const Login: FC = () => {
   return (
     <>
       <Head>
-        <title>Đăng nhập</title>
+        <title>Sign In</title>
       </Head>
       <div className="h-screen min-h-fit">
         <div className="flex h-full max-h-screen w-full justify-center overflow-auto py-10">
@@ -32,10 +33,19 @@ const Login: FC = () => {
               shadow={false}
               className="m-0 grid h-fit place-items-center rounded-b-none px-4 py-10 text-center"
             >
-              <Image src="/images/logo.png" alt="logo" width={56} height={56} />
-              <Typography variant="h4" color="cyan" className="mt-4">
-                Dev Forum
-              </Typography>
+              <Link href="/">
+                <Image
+                  src="/images/logo.png"
+                  alt="logo"
+                  width={56}
+                  height={56}
+                />
+              </Link>
+              <Link href="/">
+                <Typography variant="h4" color="cyan" className="mt-4">
+                  Dev Forum
+                </Typography>
+              </Link>
             </CardHeader>
             <CardBody>
               <Tabs value={type} className="overflow-visible">
@@ -47,7 +57,7 @@ const Login: FC = () => {
                     }}
                   >
                     <Typography variant="h6" className="text-gray-700">
-                      Đăng nhập
+                      Sign In
                     </Typography>
                   </Tab>
                   <Tab
@@ -57,7 +67,7 @@ const Login: FC = () => {
                     }}
                   >
                     <Typography variant="h6" className="text-gray-700">
-                      Đăng ký
+                      Sign Up
                     </Typography>
                   </Tab>
                 </TabsHeader>

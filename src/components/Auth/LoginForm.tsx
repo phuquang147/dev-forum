@@ -5,16 +5,16 @@ import type { FC } from 'react'
 const LoginForm: FC = () => {
   return (
     <form className="mt-6 flex flex-col gap-4">
-      <Input crossOrigin="" label="Tên đăng nhập" color="cyan" size="lg" />
+      <Input crossOrigin="" label="Username" color="cyan" size="lg" />
       <Input
         crossOrigin=""
-        label="Mật khẩu"
+        label="Password"
         type="password"
         color="cyan"
         size="lg"
       />
       <Button size="lg" color="cyan" variant="gradient">
-        Đăng Nhập
+        Sign In
       </Button>
       <Button
         size="lg"
@@ -28,7 +28,7 @@ const LoginForm: FC = () => {
           width={24}
           height={24}
         />
-        Đăng nhập với Google
+        Sign in with Google
       </Button>
     </form>
   )
