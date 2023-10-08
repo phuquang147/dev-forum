@@ -36,5 +36,7 @@ module.exports = {
     '@typescript-eslint/indent': 'off',
     'react/prop-types': 'off',
     '@typescript-eslint/member-delimiter-style': 'off',
+    '@typescript-eslint/ban-types': 'off',
+    'react/no-unknown-property': 'off',
   },
 }
