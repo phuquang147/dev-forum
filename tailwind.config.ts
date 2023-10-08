@@ -1,4 +1,4 @@
-const withMT = require('@material-tailwind/react/utils/withMT')
+import withMT from '@material-tailwind/react/utils/withMT'
 
 const config = withMT({
   content: [
@@ -11,7 +11,7 @@ const config = withMT({
     extend: {},
   },
   plugins: [
-    function ({ addComponents }) {
+    function ({ addComponents }: { addComponents: any }) {
       addComponents({
         '.container': {
           maxWidth: '100%',
