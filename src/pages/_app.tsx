@@ -1,6 +1,6 @@
 import { ThemeProvider } from '@material-tailwind/react'
-import { type NextPage } from 'next'
-import type { AppProps, AppType } from 'next/app'
+import { type NextComponentType, type NextPage } from 'next'
+import type { AppContext, AppInitialProps, AppLayoutProps } from 'next/app'
 import { Nunito } from 'next/font/google'
 import type { ReactElement, ReactNode } from 'react'
 import '~/styles/globals.css'
@@ -14,13 +14,11 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
 }
 
-type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout
-}
-
-const App: AppType<AppPropsWithLayout> = ({ Component, pageProps }) => {
-  const getLayout = Component.getLayout ?? ((page: NextPage) => page)
-
+const App: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
+  Component,
+  pageProps,
+}: AppLayoutProps) => {
+  const getLayout = Component.getLayout ?? ((page: ReactNode) => page)
   return getLayout(
     <>
       <style jsx global>{`
