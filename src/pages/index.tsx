@@ -1,13 +1,14 @@
 import { Card, Typography } from '@material-tailwind/react'
 import MainLayout from '~/layouts/MainLayout'
 import type { NextPageWithLayout } from './_app'
+import Image from 'next/image'
 
 const Home: NextPageWithLayout = () => {
   return (
     <div>
       <div className="mx-auto max-w-screen-md py-12">
         <Card className="mb-12 overflow-hidden">
-          <img
+          <Image
             alt="nature"
             className="h-[32rem] w-full object-cover object-center"
             src="https://images.unsplash.com/photo-1485470733090-0aae1788d5af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2717&q=80"
