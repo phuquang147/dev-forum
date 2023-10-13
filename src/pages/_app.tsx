@@ -3,6 +3,7 @@ import { type NextComponentType, type NextPage } from 'next'
 import type { AppContext, AppInitialProps, AppLayoutProps } from 'next/app'
 import { Nunito } from 'next/font/google'
 import type { ReactElement, ReactNode } from 'react'
+import 'react-quill/dist/quill.snow.css'
 import '~/styles/globals.css'
 
 const nunito = Nunito({
