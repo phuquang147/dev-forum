@@ -53,15 +53,17 @@ const Header: FC = () => {
               <MagnifyingGlassIcon className="h-5 w-5" />
             </IconButton>
           </div>
-          <Button
-            className="flex items-center gap-2"
-            size="md"
-            color="cyan"
-            variant="gradient"
-          >
-            <PlusIcon className="h-4 w-4" />
-            Create post
-          </Button>
+          <Link href="/posts/create">
+            <Button
+              className="flex items-center gap-2"
+              size="md"
+              color="cyan"
+              variant="gradient"
+            >
+              <PlusIcon className="h-4 w-4" />
+              Create post
+            </Button>
+          </Link>
           <Notifications />
           <ProfileMenu />
           <Button

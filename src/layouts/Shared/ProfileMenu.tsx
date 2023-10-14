@@ -11,6 +11,7 @@ import {
   MenuList,
   Typography,
 } from '@material-tailwind/react'
+import Link from 'next/link'
 import { type FC } from 'react'
 
 const ProfileMenu: FC = () => {
@@ -26,12 +27,14 @@ const ProfileMenu: FC = () => {
         />
       </MenuHandler>
       <MenuList>
-        <MenuItem className="flex items-center gap-2">
-          <UserCircleIcon className="h-5 w-5" />
-          <Typography variant="small" className="font-normal">
-            Profile
-          </Typography>
-        </MenuItem>
+        <Link href="/profile">
+          <MenuItem className="flex items-center gap-2">
+            <UserCircleIcon className="h-5 w-5" />
+            <Typography variant="small" className="font-normal">
+              Profile
+            </Typography>
+          </MenuItem>
+        </Link>
         <MenuItem className="flex items-center gap-2">
           <Cog6ToothIcon className="h-5 w-5" />
           <Typography variant="small" className="font-normal">

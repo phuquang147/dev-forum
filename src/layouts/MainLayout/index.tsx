@@ -1,7 +1,7 @@
 import { type FC, type ReactNode } from 'react'
-import Header from './Header'
-import Footer from './Footer'
-import Sidebar from './Sidebar'
+import Footer from '../Shared/Footer'
+import Header from '../Shared/Header'
+import MainSidebar from './MainSidebar'
 
 interface MainLayoutProps {
   children: ReactNode
@@ -13,7 +13,7 @@ const MainLayout: FC<MainLayoutProps> = ({ children }) => {
       <Header />
       <div className="flex gap-4">
         <div className="relative">
-          <Sidebar />
+          <MainSidebar />
         </div>
         <div className="h-full flex-1">{children}</div>
       </div>

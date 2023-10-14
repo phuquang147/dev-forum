@@ -10,6 +10,7 @@ import {
   MenuList,
   Typography,
 } from '@material-tailwind/react'
+import Link from 'next/link'
 import type { FC } from 'react'
 
 const Notifications: FC = () => {
@@ -79,9 +80,11 @@ const Notifications: FC = () => {
             </Typography>
           </div>
         </MenuItem>
-        <Button color="cyan" variant="text">
-          View all
-        </Button>
+        <Link href="" as="/notifications">
+          <Button color="cyan" variant="text" className="w-full">
+            View all
+          </Button>
+        </Link>
       </MenuList>
     </Menu>
   )
