@@ -35,10 +35,12 @@ const Post: FC = () => {
           </div>
           <PostOptions onUpdateOpenReportModal={handleUpdateOpenReportModal} />
         </div>
-        <Typography variant="h6" className="font-semibold">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus,
-          laboriosam?
-        </Typography>
+        <Link href="/posts/slug">
+          <Typography variant="h6" className="font-semibold">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Repellendus, laboriosam?
+          </Typography>
+        </Link>
         <div className="flex items-center justify-between">
           <div className="flex gap-2">
             <Link href="/">

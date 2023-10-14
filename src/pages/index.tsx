@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import Filter from '~/components/Home/Filter'
+import Pagination from '~/components/Home/Pagination'
 import Post from '~/components/Home/Post'
 import MainLayout from '~/layouts/MainLayout'
 import type { NextPageWithLayout } from './_app'
-import Pagination from '~/components/Home/Pagination'
 
 const Home: NextPageWithLayout = () => {
   return (
@@ -40,6 +40,6 @@ const Home: NextPageWithLayout = () => {
 
 export default Home
 
-Home.getLayout = function getLayout(page) {
+Home.getLayout = (page) => {
   return <MainLayout>{page}</MainLayout>
 }
