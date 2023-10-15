@@ -9,9 +9,9 @@ interface UserLayoutProps {
 
 const UserLayout: FC<UserLayoutProps> = ({ children }) => {
   return (
-    <div className="relative max-h-screen">
+    <div className="relative flex min-h-screen flex-col">
       <Header />
-      <div className="flex gap-4">
+      <div className="flex flex-1 gap-4">
         <div className="relative">
           <UserSidebar />
         </div>

@@ -9,7 +9,7 @@ interface MainLayoutProps {
 
 const MainLayout: FC<MainLayoutProps> = ({ children }) => {
   return (
-    <div className="relative max-h-screen">
+    <div className="relative min-h-screen">
       <Header />
       <div className="flex gap-4">
         <div className="relative">
