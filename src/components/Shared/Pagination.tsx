@@ -1,5 +1,5 @@
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline'
-import { Button, IconButton } from '@material-tailwind/react'
+import { IconButton } from '@material-tailwind/react'
 import React, { type FC } from 'react'
 
 const Pagination: FC = () => {
@@ -28,15 +28,14 @@ const Pagination: FC = () => {
 
   return (
     <div className="flex items-center gap-4">
-      <Button
+      <IconButton
         variant="text"
-        className="flex items-center gap-2"
         onClick={prev}
         disabled={active === 1}
         color="cyan"
       >
-        <ArrowLeftIcon strokeWidth={2} className="h-4 w-4" /> Previous
-      </Button>
+        <ArrowLeftIcon strokeWidth={2} className="h-4 w-4" />
+      </IconButton>
       <div className="flex items-center gap-2">
         <IconButton {...getItemProps(1)}>1</IconButton>
         <IconButton {...getItemProps(2)}>2</IconButton>
@@ -44,16 +43,14 @@ const Pagination: FC = () => {
         <IconButton {...getItemProps(4)}>4</IconButton>
         <IconButton {...getItemProps(5)}>5</IconButton>
       </div>
-      <Button
+      <IconButton
         variant="text"
-        className="flex items-center gap-2"
         onClick={next}
         disabled={active === 5}
         color="cyan"
       >
-        Next
         <ArrowRightIcon strokeWidth={2} className="h-4 w-4" />
-      </Button>
+      </IconButton>
     </div>
   )
 }
