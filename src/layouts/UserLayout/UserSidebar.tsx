@@ -1,8 +1,10 @@
 import {
   BellIcon,
+  BookmarkIcon,
   CalendarIcon,
   ChatBubbleLeftRightIcon,
   Cog6ToothIcon,
+  QueueListIcon,
   UserCircleIcon,
 } from '@heroicons/react/24/outline'
 import { Card, List } from '@material-tailwind/react'
@@ -34,6 +36,16 @@ const navConfig = [
     title: 'Schedule',
     link: '/schedule',
     icon: <CalendarIcon className="h-5 w-5" />,
+  },
+  {
+    title: 'My posts',
+    link: '/my-posts',
+    icon: <QueueListIcon className="h-5 w-5" />,
+  },
+  {
+    title: 'Saved posts',
+    link: '/saved-posts',
+    icon: <BookmarkIcon className="h-5 w-5" />,
   },
 ]
 
