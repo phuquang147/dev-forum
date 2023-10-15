@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Filter from '~/components/Home/Filter'
 import Pagination from '~/components/Shared/Pagination'
-import Post from '~/components/Home/Post'
+import Post from '~/components/Shared/Post'
 import MainLayout from '~/layouts/MainLayout'
 import type { NextPageWithLayout } from './_app'
 
