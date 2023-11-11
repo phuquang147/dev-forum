@@ -1,4 +1,5 @@
 import {
+  Button,
   Card,
   CardBody,
   CardHeader,
@@ -9,6 +10,7 @@ import {
   TabsHeader,
   Typography,
 } from '@material-tailwind/react'
+import { signOut, useSession } from 'next-auth/react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -17,6 +19,7 @@ import LoginForm from '~/components/Auth/LoginForm'
 import RegisterForm from '~/components/Auth/RegisterForm'
 
 const Login: FC = () => {
+  const session = useSession()
   const [type, setType] = React.useState<'login' | 'register'>('login')
 
   return (
@@ -48,50 +51,64 @@ const Login: FC = () => {
               </Link>
             </CardHeader>
             <CardBody>
-              <Tabs value={type} className="overflow-visible">
-                <TabsHeader className="relative z-0">
-                  <Tab
-                    value="login"
-                    onClick={() => {
-                      setType('login')
+              {session.status === 'unauthenticated' ? (
+                <Tabs value={type} className="overflow-visible">
+                  <TabsHeader className="relative z-0">
+                    <Tab
+                      value="login"
+                      onClick={() => {
+                        setType('login')
+                      }}
+                    >
+                      <Typography variant="h6" className="text-gray-700">
+                        Sign In
+                      </Typography>
+                    </Tab>
+                    <Tab
+                      value="register"
+                      onClick={() => {
+                        setType('register')
+                      }}
+                    >
+                      <Typography variant="h6" className="text-gray-700">
+                        Sign Up
+                      </Typography>
+                    </Tab>
+                  </TabsHeader>
+                  <TabsBody
+                    animate={{
+                      initial: {
+                        x: type === 'login' ? 400 : -400,
+                      },
+                      mount: {
+                        x: 0,
+                      },
+                      unmount: {
+                        x: type === 'login' ? 400 : -400,
+                      },
                     }}
                   >
-                    <Typography variant="h6" className="text-gray-700">
-                      Sign In
-                    </Typography>
-                  </Tab>
-                  <Tab
-                    value="register"
+                    <TabPanel value="login" className="p-0">
+                      <LoginForm />
+                    </TabPanel>
+                    <TabPanel value="register" className="p-0">
+                      <RegisterForm />
+                    </TabPanel>
+                  </TabsBody>
+                </Tabs>
+              ) : (
+                <div className="flex justify-center">
+                  <Button
+                    color="cyan"
+                    variant="gradient"
                     onClick={() => {
-                      setType('register')
+                      signOut()
                     }}
                   >
-                    <Typography variant="h6" className="text-gray-700">
-                      Sign Up
-                    </Typography>
-                  </Tab>
-                </TabsHeader>
-                <TabsBody
-                  animate={{
-                    initial: {
-                      x: type === 'login' ? 400 : -400,
-                    },
-                    mount: {
-                      x: 0,
-                    },
-                    unmount: {
-                      x: type === 'login' ? 400 : -400,
-                    },
-                  }}
-                >
-                  <TabPanel value="login" className="p-0">
-                    <LoginForm />
-                  </TabPanel>
-                  <TabPanel value="register" className="p-0">
-                    <RegisterForm />
-                  </TabPanel>
-                </TabsBody>
-              </Tabs>
+                    Sign out
+                  </Button>
+                </div>
+              )}
             </CardBody>
           </Card>
         </div>

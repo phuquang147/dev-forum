@@ -1,3 +1,4 @@
+import { MagnifyingGlassIcon, PlusIcon } from '@heroicons/react/24/outline'
 import {
   Button,
   Collapse,
@@ -6,15 +7,16 @@ import {
   Navbar,
   Typography,
 } from '@material-tailwind/react'
+import { useSession } from 'next-auth/react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import React, { type FC } from 'react'
 import Notifications from './Notifications'
 import ProfileMenu from './ProfileMenu'
-import { useRouter } from 'next/navigation'
-import Image from 'next/image'
-import Link from 'next/link'
-import { MagnifyingGlassIcon, PlusIcon } from '@heroicons/react/24/outline'
 
 const Header: FC = () => {
+  const session = useSession()
   const router = useRouter()
   const [openNav, setOpenNav] = React.useState(false)
 
@@ -53,30 +55,36 @@ const Header: FC = () => {
               <MagnifyingGlassIcon className="h-5 w-5" />
             </IconButton>
           </div>
-          <Link href="/posts/create">
+          {session.status === 'authenticated' && (
+            <>
+              <Link href="/posts/create">
+                <Button
+                  className="flex items-center gap-2"
+                  size="md"
+                  color="cyan"
+                  variant="gradient"
+                >
+                  <PlusIcon className="h-4 w-4" />
+                  Create post
+                </Button>
+              </Link>
+              <Notifications />
+              <ProfileMenu />
+            </>
+          )}
+          {session.status === 'unauthenticated' && (
             <Button
-              className="flex items-center gap-2"
-              size="md"
-              color="cyan"
               variant="gradient"
+              size="md"
+              className="hidden lg:inline-block"
+              color="cyan"
+              onClick={() => {
+                router.push('/auth')
+              }}
             >
-              <PlusIcon className="h-4 w-4" />
-              Create post
+              Sign In
             </Button>
-          </Link>
-          <Notifications />
-          <ProfileMenu />
-          <Button
-            variant="gradient"
-            size="md"
-            className="hidden lg:inline-block"
-            color="cyan"
-            onClick={() => {
-              router.push('/auth')
-            }}
-          >
-            Sign In
-          </Button>
+          )}
           <IconButton
             variant="text"
             className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"

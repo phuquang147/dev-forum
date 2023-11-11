@@ -1,8 +1,12 @@
 import { ThemeProvider } from '@material-tailwind/react'
+import { Nunito } from '@next/font/google'
 import { type NextComponentType, type NextPage } from 'next'
+import { SessionProvider } from 'next-auth/react'
 import type { AppContext, AppInitialProps, AppLayoutProps } from 'next/app'
-import { Nunito } from 'next/font/google'
 import type { ReactElement, ReactNode } from 'react'
+import { Toaster } from 'react-hot-toast'
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
 import 'react-quill/dist/quill.snow.css'
 import '~/styles/globals.css'
 
@@ -20,17 +24,27 @@ const App: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
   pageProps,
 }: AppLayoutProps) => {
   const getLayout = Component.getLayout ?? ((page: ReactNode) => page)
-  return getLayout(
-    <>
-      <style jsx global>{`
-        html {
-          font-family: ${nunito.style.fontFamily};
-        }
-      `}</style>
-      <ThemeProvider>
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </>
+  const queryClient = new QueryClient()
+
+  return (
+    <SessionProvider>
+      {getLayout(
+        <>
+          <style jsx global>{`
+            html {
+              font-family: ${nunito.style.fontFamily};
+            }
+          `}</style>
+          <ThemeProvider>
+            <QueryClientProvider client={queryClient}>
+              <Component {...pageProps} />
+              <ReactQueryDevtools initialIsOpen={false} />
+              <Toaster />
+            </QueryClientProvider>
+          </ThemeProvider>
+        </>
+      )}
+    </SessionProvider>
   )
 }
 

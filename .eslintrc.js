@@ -42,5 +42,7 @@ module.exports = {
     '@typescript-eslint/member-delimiter-style': 'off',
     '@typescript-eslint/ban-types': 'off',
     'react/no-unknown-property': 'off',
+    '@typescript-eslint/no-floating-promises': 'off',
+    '@typescript-eslint/promise-function-async': 'off',
   },
 }
