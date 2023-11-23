@@ -39,9 +39,9 @@ const App: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
             <QueryClientProvider client={queryClient}>
               <Component {...pageProps} />
               <ReactQueryDevtools initialIsOpen={false} />
-              <Toaster />
             </QueryClientProvider>
           </ThemeProvider>
+          <Toaster containerStyle={{ zIndex: 999999 }} />
         </>
       )}
     </SessionProvider>
