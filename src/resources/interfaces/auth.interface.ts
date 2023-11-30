@@ -14,3 +14,9 @@ export interface SignUpFormData {
   displayName: string
   confirmPassword: string
 }
+
+export interface IPasswordFormData {
+  currentPassword: string
+  newPassword: string
+  confirmNewPassword: string
+}
