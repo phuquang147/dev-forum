@@ -72,6 +72,19 @@ const Header: FC = () => {
               <ProfileMenu />
             </>
           )}
+          {session.data?.user.user.role === 'Admin' && (
+            <Button
+              variant="gradient"
+              size="md"
+              className="hidden lg:inline-block"
+              color="cyan"
+              onClick={() => {
+                router.push('/admin/tags')
+              }}
+            >
+              Admin
+            </Button>
+          )}
           {session.status === 'unauthenticated' && (
             <Button
               variant="gradient"
@@ -137,7 +150,7 @@ const Header: FC = () => {
             router.push('/auth')
           }}
         >
-          Đăng nhập
+          Sign In
         </Button>
       </Collapse>
     </Navbar>

@@ -32,8 +32,8 @@ const navConfig = [
 
 const MainSidebar: FC = () => {
   return (
-    <Card className="sticky h-full w-full rounded-none border-r border-black border-opacity-10 p-4 shadow-none">
-      <List>
+    <Card className="relative h-full w-full rounded-none border-r border-black border-opacity-10 p-4 shadow-none">
+      <List className="sticky top-[90px]">
         {navConfig.map((navItem) => (
           <NavItem
             key={navItem.link}

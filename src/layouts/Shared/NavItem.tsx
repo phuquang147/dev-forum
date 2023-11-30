@@ -16,7 +16,7 @@ const NavItem: FC<NavItemProps> = ({ title, link, icon }) => {
     <Link href={link}>
       <ListItem
         className={`${
-          router.pathname === link &&
+          router.asPath === link &&
           'bg-cyan-50 text-cyan-500 hover:bg-cyan-50 hover:text-cyan-500 focus:bg-cyan-50 focus:text-cyan-500 active:bg-cyan-50 active:text-cyan-500'
         }`}
       >

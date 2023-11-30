@@ -1,8 +1,4 @@
-import {
-  Cog6ToothIcon,
-  PowerIcon,
-  UserCircleIcon,
-} from '@heroicons/react/24/outline'
+import { PowerIcon, UserCircleIcon } from '@heroicons/react/24/outline'
 import {
   Avatar,
   Menu,
@@ -11,6 +7,7 @@ import {
   MenuList,
   Typography,
 } from '@material-tailwind/react'
+import { signOut } from 'next-auth/react'
 import Link from 'next/link'
 import { type FC } from 'react'
 
@@ -35,14 +32,8 @@ const ProfileMenu: FC = () => {
             </Typography>
           </MenuItem>
         </Link>
-        <MenuItem className="flex items-center gap-2">
-          <Cog6ToothIcon className="h-5 w-5" />
-          <Typography variant="small" className="font-normal">
-            Settings
-          </Typography>
-        </MenuItem>
         <hr className="my-2 border-blue-gray-50" />
-        <MenuItem className="flex items-center gap-2 ">
+        <MenuItem className="flex items-center gap-2 " onClick={signOut}>
           <PowerIcon className="h-5 w-5 text-red-500" />
           <Typography color="red" variant="small" className="font-normal">
             Sign out

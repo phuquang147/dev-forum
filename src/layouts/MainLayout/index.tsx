@@ -9,13 +9,13 @@ interface MainLayoutProps {
 
 const MainLayout: FC<MainLayoutProps> = ({ children }) => {
   return (
-    <div className="relative min-h-screen">
+    <div className="relative flex min-h-screen flex-col">
       <Header />
-      <div className="flex gap-4">
+      <div className="flex flex-1 gap-4">
         <div className="relative">
           <MainSidebar />
         </div>
-        <div className="h-full flex-1">{children}</div>
+        <div className="h-[calc(100vh - 116px)] flex-1">{children}</div>
       </div>
       <Footer />
     </div>
