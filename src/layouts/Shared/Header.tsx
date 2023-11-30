@@ -1,9 +1,8 @@
-import { MagnifyingGlassIcon, PlusIcon } from '@heroicons/react/24/outline'
+import { PlusIcon } from '@heroicons/react/24/outline'
 import {
   Button,
   Collapse,
   IconButton,
-  Input,
   Navbar,
   Typography,
 } from '@material-tailwind/react'
@@ -14,6 +13,7 @@ import { useRouter } from 'next/navigation'
 import React, { type FC } from 'react'
 import Notifications from './Notifications'
 import ProfileMenu from './ProfileMenu'
+import Search from './Search'
 
 const Header: FC = () => {
   const session = useSession()
@@ -36,25 +36,7 @@ const Header: FC = () => {
           </Typography>
         </Link>
         <div className="flex items-center gap-4">
-          <div className="relative flex w-full gap-2 md:w-max">
-            <Input
-              crossOrigin=""
-              type="search"
-              placeholder="Search posts..."
-              className="\ w-64 !border-2 !border-gray-300 bg-white text-gray-900 ring-4 ring-transparent placeholder:text-gray-500 focus:!border-cyan-500 focus:!border-t-cyan-500"
-              labelProps={{
-                className: 'hidden',
-              }}
-              containerProps={{ className: 'min-w-[100px]' }}
-            />
-            <IconButton
-              size="sm"
-              color="cyan"
-              className="!absolute right-1 top-1 rounded"
-            >
-              <MagnifyingGlassIcon className="h-5 w-5" />
-            </IconButton>
-          </div>
+          <Search />
           {session.status === 'authenticated' && (
             <>
               <Link href="/posts/create">

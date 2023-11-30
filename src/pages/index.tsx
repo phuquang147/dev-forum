@@ -34,6 +34,12 @@ const Home: NextPageWithLayout = () => {
     }))
   }, [router.asPath])
 
+  useEffect(() => {
+    if (router.query.search) {
+      setFilter((prev) => ({ ...prev, search: router.query.search as string }))
+    }
+  }, [router.query])
+
   const { data: postsData, isLoading } = useQuery({
     queryKey: ['posts', filter],
     queryFn: async () =>
