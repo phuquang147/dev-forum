@@ -3,70 +3,117 @@ import {
   CheckBadgeIcon,
   EyeIcon,
   GiftIcon,
+  PencilSquareIcon,
+  TrashIcon,
 } from '@heroicons/react/24/outline'
 import {
   Avatar,
   Card,
   Chip,
+  IconButton,
   Tooltip,
   Typography,
 } from '@material-tailwind/react'
+import dayjs from 'dayjs'
+import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { type FC } from 'react'
+import type { IPost } from '~/resources/interfaces/post.interface'
+import { printNumberWithCommas } from '~/utils/printNumberWithCommas'
+import { getChipColorByTopic } from '~/utils/theme'
 
-const PostDetail: FC = () => {
+interface PostDetailProps {
+  post: IPost
+}
+
+const PostDetail: FC<PostDetailProps> = ({ post }) => {
+  const session = useSession()
+
   return (
     <Card className="flex flex-col gap-4 p-6 shadow">
-      <div className="flex items-start gap-2">
-        <Avatar
-          variant="circular"
-          alt="avatar"
-          size="sm"
-          className="h-10 w-10 cursor-pointer"
-          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
-        />
-        <div className="flex flex-col">
-          <Typography className="font-semibold leading-5">Phú Quang</Typography>
-          <Typography variant="small">11:30 - 15/10/2023</Typography>
+      <div className="flex items-start justify-between gap-2">
+        <div className="flex gap-2">
+          <Avatar
+            variant="circular"
+            alt="avatar"
+            size="sm"
+            className="h-10 w-10 cursor-pointer"
+            src="/images/user.png"
+          />
+          <div className="flex flex-col">
+            <Typography className="font-semibold leading-5">
+              {post.author.displayName}
+            </Typography>
+            <Typography variant="small">
+              {dayjs(post.createdAt).format('hh:mm - DD/MM/YYYY')}
+            </Typography>
+          </div>
         </div>
+        {session.data?.user.user._id === post.author._id && (
+          <div className="flex gap-2">
+            <Link href={`/posts/edit/${post.slug}`}>
+              <Tooltip content="Edit post">
+                <IconButton color="cyan">
+                  <PencilSquareIcon className="h-5 w-5" />
+                </IconButton>
+              </Tooltip>
+            </Link>
+            <Tooltip content="Delete post">
+              <IconButton color="pink">
+                <TrashIcon className="h-5 w-5" />
+              </IconButton>
+            </Tooltip>
+          </div>
+        )}
       </div>
       <Typography variant="lead" className="font-semibold">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus,
-        laboriosam?
+        {post.title}
       </Typography>
+      <div
+        className="ql-editor p-0"
+        dangerouslySetInnerHTML={{
+          __html: post.description,
+        }}
+      ></div>
       <div className="flex items-center justify-between">
         <div className="flex gap-2">
-          <Link href="/">
-            <Chip value="reactjs" variant="ghost" />
-          </Link>
-          <Link href="/">
-            <Chip value="javascript" variant="ghost" />
-          </Link>
-          <Link href="/">
-            <Chip value="nextjs" variant="ghost" />
-          </Link>
+          {post.tags.map((tag) => (
+            <Chip key={tag._id} value={tag.name} variant="ghost" />
+          ))}
         </div>
         <div className="flex gap-2">
-          <Tooltip content="Bounty">
-            <Chip color="cyan" value="50.000 VNĐ" icon={<GiftIcon />} />
-          </Tooltip>
+          {post.bounty && post.bounty > 0 && (
+            <Tooltip content="Bounty">
+              <Chip
+                color="cyan"
+                value={`${printNumberWithCommas(post.bounty)} VNĐ`}
+                icon={<GiftIcon />}
+              />
+            </Tooltip>
+          )}
           <Tooltip content="Category">
-            <Chip value="Bug" color="pink" size="lg" />
-          </Tooltip>
-          <Tooltip content="Answered">
             <Chip
-              value="Answered"
-              variant="filled"
-              color="green"
-              icon={<CheckBadgeIcon />}
+              value={post.topic}
+              color={getChipColorByTopic(post.topic)}
+              size="lg"
             />
           </Tooltip>
+          {post.isAnswered && (
+            <Tooltip content="Answered">
+              <Chip
+                value="Answered"
+                variant="filled"
+                color="green"
+                icon={<CheckBadgeIcon />}
+              />
+            </Tooltip>
+          )}
           <Tooltip content="Views">
-            <Chip value="40" variant="ghost" icon={<EyeIcon />} />
+            <Chip value={post.views ?? 0} variant="ghost" icon={<EyeIcon />} />
           </Tooltip>
           <Tooltip content="Answers">
             <Chip
-              value="4"
+              value={post.answerCount ?? 0}
               variant="ghost"
               icon={<ChatBubbleBottomCenterIcon />}
             />

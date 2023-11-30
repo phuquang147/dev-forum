@@ -11,13 +11,15 @@ import {
   Typography,
 } from '@material-tailwind/react'
 import { useState, type FC } from 'react'
+import type { IComment } from '~/resources/interfaces/post.interface'
 import Replies from './Replies'
 
 interface AnswerProps {
+  comment: IComment
   isMainAnswer?: boolean
 }
 
-const Answer: FC<AnswerProps> = ({ isMainAnswer = true }) => {
+const Answer: FC<AnswerProps> = ({ comment, isMainAnswer = true }) => {
   const [showReplies, setShowReplies] = useState<boolean>(false)
 
   const handleToggleShowReplies = (): void => {
@@ -30,7 +32,7 @@ const Answer: FC<AnswerProps> = ({ isMainAnswer = true }) => {
         <IconButton className="rounded-full" variant="text" color="cyan">
           <ChevronUpIcon className="h-5 w-5" />
         </IconButton>
-        <Typography>10</Typography>
+        <Typography>{comment.score}</Typography>
         <IconButton className="rounded-full" variant="text" color="red">
           <ChevronDownIcon className="h-5 w-5" />
         </IconButton>
@@ -49,16 +51,17 @@ const Answer: FC<AnswerProps> = ({ isMainAnswer = true }) => {
           />
           <div className="flex flex-col">
             <Typography className="font-semibold leading-5">
-              Phú Quang
+              {comment.author.displayName}
             </Typography>
             <Typography variant="small">11:30 - 15/10/2023</Typography>
           </div>
         </div>
-        <Typography variant="paragraph">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
-          dolorum aliquam provident voluptates, odio quibusdam illum hic fuga
-          facilis error.
-        </Typography>
+        <div
+          className="ql-editor p-0"
+          dangerouslySetInnerHTML={{
+            __html: comment.description,
+          }}
+        ></div>
         {isMainAnswer && (
           <div className="flex self-end">
             <Button variant="text" color="cyan" className="self-end">
