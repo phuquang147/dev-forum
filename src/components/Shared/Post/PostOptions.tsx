@@ -11,14 +11,10 @@ import {
 import { type FC } from 'react'
 
 interface PostOptionsProps {
-  onUpdateOpenReportModal: (open: boolean) => void
+  postId: string
 }
 
-const PostOptions: FC<PostOptionsProps> = ({ onUpdateOpenReportModal }) => {
-  const handleOpenReportModal = (): void => {
-    onUpdateOpenReportModal(true)
-  }
-
+const PostOptions: FC<PostOptionsProps> = ({ postId }) => {
   return (
     <Popover placement="bottom-end">
       <PopoverHandler>
@@ -28,10 +24,7 @@ const PostOptions: FC<PostOptionsProps> = ({ onUpdateOpenReportModal }) => {
       </PopoverHandler>
       <PopoverContent>
         <List className="p-0">
-          <ListItem
-            onClick={handleOpenReportModal}
-            className="text-red-500 hover:text-red-500 focus:text-red-500 active:text-red-500"
-          >
+          <ListItem className="text-red-500 hover:text-red-500 focus:text-red-500 active:text-red-500">
             <ListItemPrefix>
               <FlagIcon className="text h-5 w-5" />
             </ListItemPrefix>
