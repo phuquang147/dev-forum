@@ -1,9 +1,7 @@
 import {
   BellIcon,
   BookmarkIcon,
-  CalendarIcon,
   ChatBubbleLeftRightIcon,
-  Cog6ToothIcon,
   QueueListIcon,
   UserCircleIcon,
 } from '@heroicons/react/24/outline'
@@ -18,11 +16,6 @@ const navConfig = [
     icon: <UserCircleIcon className="h-5 w-5" />,
   },
   {
-    title: 'Settings',
-    link: '/settings',
-    icon: <Cog6ToothIcon className="h-5 w-5" />,
-  },
-  {
     title: 'Notifications',
     link: '/notifications',
     icon: <BellIcon className="h-5 w-5" />,
@@ -31,11 +24,6 @@ const navConfig = [
     title: 'Messages',
     link: '/messages',
     icon: <ChatBubbleLeftRightIcon className="h-5 w-5" />,
-  },
-  {
-    title: 'Schedule',
-    link: '/schedule',
-    icon: <CalendarIcon className="h-5 w-5" />,
   },
   {
     title: 'My posts',
@@ -51,8 +39,8 @@ const navConfig = [
 
 const UserSidebar: FC = () => {
   return (
-    <Card className="sticky h-full w-full rounded-none border-r border-black border-opacity-10 p-4 shadow-none">
-      <List>
+    <Card className="relative h-full w-full rounded-none border-r border-black border-opacity-10 p-4 shadow-none">
+      <List className="sticky top-[90px]">
         {navConfig.map((navItem) => (
           <NavItem
             key={navItem.link}
