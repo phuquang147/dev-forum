@@ -1,14 +1,13 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Button } from '@material-tailwind/react'
 import { signIn } from 'next-auth/react'
-import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import type { FC } from 'react'
 import { useForm, type SubmitHandler } from 'react-hook-form'
 import * as yup from 'yup'
 import type { LoginFormData } from '~/resources/interfaces/auth.interface'
-import Input from '../UI/Input'
 import { showToast } from '~/utils/toast'
-import { useRouter } from 'next/navigation'
+import Input from '../UI/Input'
 
 const schema = yup
   .object({
@@ -61,20 +60,6 @@ const LoginForm: FC = () => {
       />
       <Button type="submit" size="lg" color="cyan" variant="gradient">
         Sign In
-      </Button>
-      <Button
-        size="lg"
-        color="white"
-        variant="filled"
-        className="flex items-center justify-center gap-3 text-gray-600"
-      >
-        <Image
-          src="/images/google.png"
-          alt="google logo"
-          width={24}
-          height={24}
-        />
-        Sign in with Google
       </Button>
     </form>
   )
