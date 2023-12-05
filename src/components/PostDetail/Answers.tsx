@@ -3,10 +3,8 @@ import { useSession } from 'next-auth/react'
 import { useEffect, useState, type FC } from 'react'
 import { io, type Socket } from 'socket.io-client'
 import { DOMAIN_NAME } from '~/api/apiUrls'
-import type {
-  IComment,
-  IPostDetail,
-} from '~/resources/interfaces/post.interface'
+import type { IComment } from '~/resources/interfaces/comment.interface'
+import type { IPostDetail } from '~/resources/interfaces/post.interface'
 import Answer from './Answer'
 
 interface AnswersProps {
