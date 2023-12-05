@@ -1,5 +1,8 @@
 import { ThemeProvider } from '@material-tailwind/react'
 import { Nunito } from '@next/font/google'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import updateLocale from 'dayjs/plugin/updateLocale'
 import { type NextComponentType, type NextPage } from 'next'
 import { SessionProvider } from 'next-auth/react'
 import type { AppContext, AppInitialProps, AppLayoutProps } from 'next/app'
@@ -8,6 +11,7 @@ import { Toaster } from 'react-hot-toast'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import 'react-quill/dist/quill.snow.css'
+import RootContext from '~/contexts'
 import '~/styles/globals.css'
 
 const nunito = Nunito({
@@ -26,6 +30,27 @@ const App: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
   const getLayout = Component.getLayout ?? ((page: ReactNode) => page)
   const queryClient = new QueryClient()
 
+  dayjs.extend(updateLocale)
+  dayjs.extend(relativeTime)
+
+  dayjs.updateLocale('vi', {
+    relativeTime: {
+      future: '%s',
+      past: '% ngày trước',
+      s: 'vài giây trước',
+      m: 'một phút trước',
+      mm: '%d phút trước',
+      h: '1 giờ trước',
+      hh: '%d giờ trước',
+      d: '1 ngày trước',
+      dd: '%d ngày trước',
+      M: '1 tháng trước',
+      MM: '%d tháng trước',
+      y: '1 năm trước',
+      yy: '%d năm trước',
+    },
+  })
+
   return (
     <SessionProvider>
       {getLayout(
@@ -37,7 +62,9 @@ const App: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
           `}</style>
           <ThemeProvider>
             <QueryClientProvider client={queryClient}>
-              <Component {...pageProps} />
+              <RootContext>
+                <Component {...pageProps} />
+              </RootContext>
               <ReactQueryDevtools initialIsOpen={false} />
             </QueryClientProvider>
           </ThemeProvider>

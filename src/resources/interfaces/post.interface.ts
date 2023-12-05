@@ -1,4 +1,5 @@
 import type { TTopic } from '../types/common.type'
+import type { IComment } from './comment.interface'
 import type { ITag } from './tag.interface'
 
 export interface IPost {
@@ -21,18 +22,6 @@ export interface IPost {
   score: {}
   answerCount: number
   slug: string
-}
-
-export interface IComment {
-  _id: string
-  description: string
-  author: {
-    _id: string
-    displayName: string
-  }
-  is_accepted: boolean
-  score: number
-  vote: number
 }
 
 export interface IPostDetail {

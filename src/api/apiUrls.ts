@@ -10,7 +10,7 @@ export const URL_UPDATE_PASSWORD = `${DOMAIN_NAME}/auth/change-password`
 export const URL_UPDATE_PROFILE = `${DOMAIN_NAME}/auth/update-profile`
 
 // Images
-export const URL_UPLOAD_IMAGE = `${DOMAIN_NAME}/upload-image`
+export const URL_UPLOAD_IMAGE = `${DOMAIN_NAME}/upload/image`
 
 // Tags
 export const URL_GET_TAGS = `${DOMAIN_NAME}/tags`
