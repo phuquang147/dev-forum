@@ -5,9 +5,9 @@ const Replies: FC = () => {
   return (
     <div className="flex flex-col gap-4">
       <hr />
-      {/* <Answer isMainAnswer={false} /> */}
+      <Answer isMainAnswer={false} />
       <hr />
-      {/* <Answer isMainAnswer={false} /> */}
+      <Answer isMainAnswer={false} />
     </div>
   )
 }
