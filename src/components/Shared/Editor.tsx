@@ -71,7 +71,9 @@ const Editor: React.FC<EditorProps> = ({ value, onChange }) => {
       modules={modules}
       placeholder="Nhập nội dung tại đây ..."
       value={value}
-      // onChange={(value: string) => handleChange(value)}
+      onChange={(value: string) => {
+        onChange(value)
+      }}
       formats={formats}
       theme="snow"
     />
