@@ -1,5 +1,5 @@
 export interface ICommentFormData {
-  postId?: string
+  postId: string
   parent?: string
   description: string
 }

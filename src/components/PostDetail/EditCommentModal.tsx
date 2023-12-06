@@ -27,9 +27,7 @@ interface EditCommentModalProps {
 
 const schema = yup
   .object({
-    description: yup.string().required('Please enter description'),
-    parent: yup.string(),
-    postId: yup.string(),
+    description: yup.string().required('Please enter tag name'),
   })
   .required()
 
@@ -89,6 +87,7 @@ const EditCommentModal: FC<EditCommentModalProps> = ({
                 onChange={(value) => {
                   setValue('description', value)
                 }}
+                placeholder="Enter description here"
               />
             </ErrorWrapper>
             <Button
